@@ -21,15 +21,23 @@ export default class Posts extends React.Component {
       );
   }
 
+  handleDelete = (id) => {
+    const newList = this.state.items.filter(item => item.id !== id);
+    this.setState ({
+      items : newList,
+    })
+  }
   render() {
     return (
       <div className="card">
+        <h1 className="center" >COMMENTS</h1>
         <table border={3}>
           <tr>
             <th>UserId</th>
             <th>Name</th>
             <th>Email</th>
             <th>Title</th>
+            <th>Delete</th>
           </tr>
 
           <tbody>
@@ -40,6 +48,7 @@ export default class Posts extends React.Component {
                   <td>{item.name}</td>
                   <td>{item.email}</td>
                   <td>{item.body}</td>
+                  <td><button className="delbtn" type="button" onClick={()=>this.handleDelete(item.id)}>Delete</button></td>
                 </tr>
               );
             })}

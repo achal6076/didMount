@@ -9,6 +9,12 @@ export default class Posts extends React.Component {
       items: [],
     };
   }
+  handleDelete = (id) => {
+    const newList = this.state.items.filter(item => item.id !== id);
+    this.setState ({
+      items : newList,
+    })
+  }
 
   componentDidMount() {
     console.log("componentDidMountCalled", this.state.renderType);
@@ -26,12 +32,14 @@ export default class Posts extends React.Component {
   render() {
     return (
       <div>
+        <h1 className="center" >USERS</h1>
         <table border={3}>
           <tr>
             <th>UserId</th>
             <th>Id</th>
             <th>Title</th>
             <th>Body</th>
+            <th>Delete</th>
           </tr>
 
           <tbody>
@@ -42,6 +50,7 @@ export default class Posts extends React.Component {
                   <td>{item.name}</td>
                   <td>{item.email}</td>
                   <td>{item.username}</td>
+                  <td><button className="delbtn" type="button" onClick={()=>this.handleDelete(item.id)}>Delete</button></td>
                 </tr>
               );
             })}
