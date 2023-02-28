@@ -70,7 +70,7 @@ export default class ComponentClass extends React.Component {
       .then((res) =>
         this.setState({
           renderType : renderValue,
-          items: res.data,
+          items : res.data,
         })
       );
   }

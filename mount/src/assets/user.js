@@ -1,4 +1,6 @@
 import React from "react";
+import SortIcon from '@mui/icons-material/Sort';
+
 
 
 export default class Users extends React.Component {
@@ -10,10 +12,11 @@ export default class Users extends React.Component {
         <h1 className="center" >USERS</h1>
         <table border={3}>
           <tr>
-            <th onClick={()=>this.props.sorting("id")}>Id</th>
-            <th onClick={()=>this.props.sorting("name")}>Name</th>
-            <th onClick={()=>this.props.sorting("username")}>UserName</th>
-            <th onClick={()=>this.props.sorting("email")}>Email</th>
+          <th>Id <SortIcon onClick={()=>this.props.sorting("id")} /></th>
+          <th>Name <SortIcon onClick={()=>this.props.sorting("name")} /></th>
+          <th>UserName <SortIcon onClick={()=>this.props.sorting("username")} /></th>
+          <th>Email <SortIcon onClick={()=>this.props.sorting("email")} /></th>
+            
             <th >Delete</th>
             
           </tr>
