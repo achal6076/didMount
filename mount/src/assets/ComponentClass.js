@@ -1,13 +1,12 @@
-import React from "react";
+import React,{Component} from "react";
 import axios from "axios";
-import Posts from "./post";
-import Comments from "./comment";
+import Posts from "./Post";
+import Comments from "./Comment";
 import Users from "./user";
 // import Error from "./Error";
 
-import { Route,Routes } from "react-router-dom";
 
-export default class ComponentClass extends React.Component {
+export default class ComponentClass extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,9 +16,8 @@ export default class ComponentClass extends React.Component {
   }
 
   handleDelete = (id) => {
-    const newList = this.state.items.filter((item) => item.id !== id);
     this.setState({
-      items: newList,
+      items: this.state.items.filter((item) => item.id !== id)
     });
   };
 
@@ -38,7 +36,6 @@ export default class ComponentClass extends React.Component {
   };
 
   componentDidMount() {
-    console.log("componentDidMountCalled", this.state.renderType);
     axios
       .get(`https://jsonplaceholder.typicode.com/${this.state.renderType}`)
       .then((res) =>
@@ -48,23 +45,9 @@ export default class ComponentClass extends React.Component {
       );
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   console.log("componnent did update", this.state.renderType);
-  //   console.log(this.state.items);
-  //   if(prevState.renderType !== this.state.renderType){
-  //     // axios
-  //     // .get(`https://jsonplaceholder.typicode.com/${this.state.renderType}`)
-  //     // .then((res) =>
-  //     //   this.setState({
-  //     //     items: res.data,
-  //     //   })
-  //     // );
-  //   }
 
-  // }
 
   changeState = (renderValue) => {
-    // this.setState({renderType : renderValue});
     axios
       .get(`https://jsonplaceholder.typicode.com/${renderValue}`)
       .then((res) =>
@@ -78,15 +61,10 @@ export default class ComponentClass extends React.Component {
   render() {
     return (
       <main>
-          <Routes>
-            <Route path="/" component={Posts}  />
-            <Route path="/comments" component={Comments} />
-            <Route path="/users" component={Users} />
-            <Route component={Error} />
-          </Routes>
+          
 
           
-          <div class="card">
+          <div className="card">
             <br />
             <center>
               <button onClick={() => this.changeState("posts")}>Posts</button>

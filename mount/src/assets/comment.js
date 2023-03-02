@@ -1,14 +1,16 @@
-import React from "react";
+import React,{Component} from "react";
 import SortIcon from '@mui/icons-material/Sort';
 
 
-export default class Posts extends React.Component {
+export default class Comment extends Component {
   render() {
-    const comments = this.props.comments;
+    // const comments = this.props.comments;
     return (
       <div className="card">
         <h1 className="center" >COMMENTS</h1>
         <table border={3}>
+          <thead>
+
           <tr>
            
             <th>Id <SortIcon onClick={()=>this.props.sorting("id")} /></th>
@@ -19,12 +21,11 @@ export default class Posts extends React.Component {
             <th >Delete</th>
           </tr>
 
+          </thead>
           <tbody>
-            {comments.map((item) => {
-              console.log(item);
+            {this.props.comments.map((item, index) => {
               return (
-                
-                <tr>
+                <tr key={index}>
                   <td>{item.id}</td>
                   <td>{item.name}</td>
                   <td>{item.email}</td>

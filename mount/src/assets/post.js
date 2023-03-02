@@ -1,14 +1,14 @@
-import React from "react";
-// import SortByAlphaIcon from '@mui/icons-material/SortByAlpha';
+import React,{Component} from "react";
 import SortIcon from '@mui/icons-material/Sort';
-export default class Posts extends React.Component {
+export default class Posts extends Component {
 
   render() {
-    const posts = this.props.posts;
     return (
       <div>
         <h1 className="center" >POSTS</h1>
         <table  border={3}>
+          <thead>
+
           <tr>
             <th> <span>Id</span> <SortIcon onClick={()=>this.props.sorting("id")} /></th>
             <th> <span>Title</span> <SortIcon onClick={()=>this.props.sorting("title")} /></th>
@@ -16,11 +16,11 @@ export default class Posts extends React.Component {
             <th>Delete</th>
           </tr>
 
+          </thead>
           <tbody>
-            {posts.map((item) => {
+            {this.props.posts.map((item, index) => {
               return (
-                <tr>
-                  {/* <td>{item.userId}</td> */}
+                <tr key={index}>
                   <td>{item.id}</td>
                   <td>{item.title}</td>
                   <td>{item.body}</td>
