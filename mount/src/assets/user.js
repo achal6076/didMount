@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import SortIcon from "@mui/icons-material/Sort";
 
-export default class Users extends Component {
-  render() {
+export default function Users(props)  {
+
     return (
       <div>
         <h1 className="center">USERS</h1>
@@ -11,17 +11,17 @@ export default class Users extends Component {
 
           <tr>
             <th>
-              Id <SortIcon onClick={() => this.props.sorting("id")} />
+              Id <SortIcon onClick={() => props.sorting("id")} />
             </th>
             <th>
-              Name <SortIcon onClick={() => this.props.sorting("name")} />
+              Name <SortIcon onClick={() =>props.sorting("name")} />
             </th>
             <th>
               UserName{" "}
-              <SortIcon onClick={() => this.props.sorting("username")} />
+              <SortIcon onClick={() => props.sorting("username")} />
             </th>
             <th>
-              Email <SortIcon onClick={() => this.props.sorting("email")} />
+              Email <SortIcon onClick={() => props.sorting("email")} />
             </th>
 
             <th>Delete</th>
@@ -29,7 +29,7 @@ export default class Users extends Component {
 
           </thead>
           <tbody>
-            {this.props.users.map((item, index) => {
+            {props.users && props.users.map((item, index) => {
               return (
                 <tr key={index}>
                   <td>{item.id}</td>
@@ -40,7 +40,7 @@ export default class Users extends Component {
                     <button
                       className="delbtn"
                       type="button"
-                      onClick={() => this.props.handleDelete(item.id)}
+                      onClick={() => props.handleDelete(item.id)}
                     >
                       Delete
                     </button>
@@ -52,5 +52,4 @@ export default class Users extends Component {
         </table>
       </div>
     );
-  }
 }
